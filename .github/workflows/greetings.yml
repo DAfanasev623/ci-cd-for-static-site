@@ -1,0 +1,21 @@
+yaml
+
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        issue_message:|
+          👋 Привет, @${{ github.actor }}! Спасибо за твой первый Issue!
+          Мы скоро его рассмотрим.
+        pr_message: |
+          🎉 Отличная работа, @${{ github.actor }}! Спасибо за первый Pull Request!
